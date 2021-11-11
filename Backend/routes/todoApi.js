@@ -12,9 +12,9 @@ router.post("/addtask", tdc.addTodoTask);
 router.get("/:id", tdc.getTodoTaskById);
 
 //Edit existant task
-router.put("/edittask/:uid", tdc.editExistantTodoTask);
+router.put("/edittask/:id", tdc.editExistantTodoTask);
 
 //Delete task
-router.delete("/deletetask/:uid", tdc.deleteTodoTask);
+router.delete("/deletetask/:id", tdc.deleteTodoTask);
 
 module.exports = router

@@ -46,7 +46,7 @@ exports.getTodoTaskById = (req,res,next)=>{
 exports.editExistantTodoTask = async (req,res)=>{
     try{
         const task = req.body;
-        const id = req.params.uid;
+        const id = req.params.id;
         const t = await todoSchema.findById(id);
         if(!t)
         res.status(404).json({message:"This task does not exist!"});
@@ -63,7 +63,7 @@ exports.editExistantTodoTask = async (req,res)=>{
 //Delete task
 exports. deleteTodoTask = async (req,res)=>{
     try{
-        const id = req.params.uid;
+        const id = req.params.id;
         const task = await todoSchema.findById(id);
         if(!task)
             res.status(404).json({message:"This task does not exist!"});
