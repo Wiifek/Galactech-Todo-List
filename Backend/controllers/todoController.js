@@ -1,10 +1,10 @@
 const todoSchema = require('../models/todoSchema');
 
-//Get all items
+//Get all tasks
 exports.getTodoList = async (req,res,next)=>{
     try {
-        const items = await todoSchema.find();
-        res.status(200).json(items);
+        const tasks = await todoSchema.find();
+        res.status(200).json(tasks);
     }
     catch(err){
         console.log(err);
@@ -12,12 +12,12 @@ exports.getTodoList = async (req,res,next)=>{
     }
 }
 
-//Add new todo item
-exports.addTodoItem = async (req,res)=>{
+//Add new todo task
+exports.addTodoTask = async (req,res)=>{
     try{
-        const item = new todoSchema(req.body);
-        await item.save();
-        res.status(200).json(item);
+        const task = new todoSchema(req.body);
+        await task.save();
+        res.status(200).json(task);
     }
     catch(err){
         console.log(err);
@@ -25,13 +25,13 @@ exports.addTodoItem = async (req,res)=>{
     }
 }
 
-//Get item by id
-exports.getTodoItemById = (req,res,next)=>{
+//Get task by id
+exports.getTodoTaskById = (req,res,next)=>{
     try{
         const id = req.params.id;
         todoSchema.findById(id,(err, i)=> {
             if (err) 
-                return res.status(404).json("Item not found!");
+                return res.status(404).json("Task not found!");
             else 
                 return res.status(200).json(i);
         })
@@ -42,16 +42,16 @@ exports.getTodoItemById = (req,res,next)=>{
     }
 }
 
-//Edit existant item
-exports.editExistantTodoItem = async (req,res)=>{
+//Edit existant task
+exports.editExistantTodoTask = async (req,res)=>{
     try{
-        const item = req.body;
+        const task = req.body;
         const id = req.params.uid;
-        const i = await todoSchema.findById(id);
-        if(!i)
-        res.status(404).json({message:"This item does not exist!"});
+        const t = await todoSchema.findById(id);
+        if(!t)
+        res.status(404).json({message:"This task does not exist!"});
         else{
-            await todoSchema.findByIdAndUpdate(id, item);
+            await todoSchema.findByIdAndUpdate(id, task);
             res.status(200).json({message:"Item with id "+id+"  has been updated successfuly"})
         }
     }
@@ -60,13 +60,13 @@ exports.editExistantTodoItem = async (req,res)=>{
         res.status(500).json({message : "Internal server error!"});
     }
 }
-//Delete item
-exports. deleteTodoItem = async (req,res)=>{
+//Delete task
+exports. deleteTodoTask = async (req,res)=>{
     try{
         const id = req.params.uid;
-        const item = await todoSchema.findById(id);
-        if(!item)
-            res.status(404).json({message:"This item does not exist!"});
+        const task = await todoSchema.findById(id);
+        if(!task)
+            res.status(404).json({message:"This task does not exist!"});
         else{
             await todoSchema.findByIdAndRemove(id);
             res.status(200).json({message:"Item with id "+id+" has been deleted successfuly"})        

@@ -2,19 +2,19 @@ const express = require('express');
 const router = express.Router();
 const tdc = require('../controllers/todoController');
 
-//Get all items
+//Get all tasks
 router.get("/",tdc.getTodoList);
 
-//Add new todo item
-router.post("/additem", tdc.addTodoItem);
+//Add new todo task
+router.post("/addtask", tdc.addTodoTask);
 
-//Get item by id
-router.get("/:id", tdc.getTodoItemById);
+//Get task by id
+router.get("/:id", tdc.getTodoTaskById);
 
-//Edit existant item
-router.put("/edititem/:uid", tdc.editExistantTodoItem);
+//Edit existant task
+router.put("/edittask/:uid", tdc.editExistantTodoTask);
 
-//Delete item
-router.delete("/deleteitem/:uid", tdc.deleteTodoItem);
+//Delete task
+router.delete("/deletetask/:uid", tdc.deleteTodoTask);
 
 module.exports = router
