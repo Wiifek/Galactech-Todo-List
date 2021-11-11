@@ -1,6 +1,7 @@
 # Todo App
 
 A simple todo app that allows the user to create, edit and delete tasks from his todo list.
+Template from: https://github.com/briancodex/react-todo-app-v1
 
 ## Installation
 1- Clone this repository or download the project's zip.
